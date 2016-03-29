@@ -1,0 +1,17 @@
+{
+  "name": "autopulous-xdom",
+  "version": "0.0.1",
+  "description": "A JavaScript module that provides constants and functions to process XMLHttpRequest.responseXML (XML DOM) objects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autopulous/xdom.git"
+  },
+  "license": "MIT",
+  "private": false,
+  "main": "xdom.js",
+  "keywords": [
+    "XML",
+    "DOM",
+    "JavaScript"
+  ]
+}
