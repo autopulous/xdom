@@ -33,10 +33,10 @@ describe('autopulous-xdom unit test suite', () => {
     });
 
     it('should have monotonically ascending member values addressed by key names', () => {
-        expect(nodeTypes[nodeTypeKeys[nodeTypes.UNDEFINED + nodeTypes.NOTATION + 1]]).toEqual(0);
+        expect(nodeTypes[+nodeTypeKeys[nodeTypes.UNDEFINED + nodeTypes.NOTATION + 1]]).toEqual(0);
 
         for (var index:number = nodeTypes.ELEMENT; nodeTypes.NOTATION >= index; index++) {
-            expect(nodeTypes[nodeTypeKeys[index + nodeTypes.NOTATION + 1]]).toEqual(index);
+            expect(nodeTypes[+nodeTypeKeys[index + nodeTypes.NOTATION + 1]]).toEqual(index);
         }
     });
 

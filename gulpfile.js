@@ -47,12 +47,12 @@ gulp.task('copy-html', function () {
 });
 
 gulp.task('copy-javascript', function () {
-    return gulp.src(['./src/**/*.js', '!./src/**/spec.js'])
+    return gulp.src(['./src/**/*.js', '!./src/**/spec*.js'])
         .pipe(gulp.dest('./app/'));
 });
 
 gulp.task('copy-test-javascript', function () {
-    return gulp.src('./src/**/spec.js')
+    return gulp.src('./src/**/spec*.js')
         .pipe(gulp.dest('./app/'));
 });
 
@@ -62,11 +62,11 @@ gulp.task('compile-typescript', function () {
     var typescriptProject = typescript(typescript.createProject('tsconfig.json'));
     var sourcemaps = require('gulp-sourcemaps');
 
-    return gulp.src(['!./src/**/spec.ts', './src/**/*.ts'])
-        .pipe(sourcemaps.init())
+    return gulp.src(['!./src/**/spec*.ts', './src/**/*.ts'])
         .pipe(typescriptProject)
-        .pipe(sourcemaps.write('../map/'))
         .pipe(gulp.dest('./app/'))
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write('../map/'))
         .pipe(typescriptCompiler);
 });
 
@@ -76,16 +76,16 @@ gulp.task('compile-test-typescript', function () {
     var typescriptCompiler = typescript({typescript: require('ntypescript')});
     var typescriptProject = typescript(typescript.createProject('tsconfig.json'));
 
-    return gulp.src('./src/**/spec.ts')
-        .pipe(sourcemaps.init())
+    return gulp.src('./src/**/spec*.ts')
         .pipe(typescriptProject)
-        .pipe(sourcemaps.write('../map/'))
         .pipe(gulp.dest('./app/'))
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write('../map/'))
         .pipe(typescriptCompiler);
 });
 
 gulp.task('build-distribution', function () {
-    return gulp.src(['./src/package.json', './README.md', './app/**/*.js'])
+    return gulp.src(['./src/package.json', './README.md', './app/**/*.js', './**/*.ts', '!./**/spec*.ts', '!./node_modules/', '!./node_modules/**', '!./typings/', '!./typings/**'])
         .pipe(gulp.dest('distro'));
 });
 

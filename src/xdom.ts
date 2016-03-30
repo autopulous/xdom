@@ -36,11 +36,11 @@ module xdom {
     ];
 
     export function isNodeType(nodeType:number):boolean {
-        return null === nodeType || undefined === nodeType ? false : undefined != nodeTypeKeys[nodeType];
+        return null === nodeType || undefined === nodeType ? false : undefined !== nodeTypeKeys[nodeType];
     }
 
     export function isNodeTypeKey(nodeTypeKey:string):boolean {
-        return null === nodeTypeKey || undefined === nodeTypeKey ? false : undefined != nodeTypes[nodeTypeKey];
+        return null === nodeTypeKey || undefined === nodeTypeKey ? false : undefined !== nodeTypes[nodeTypeKey];
     }
 
     export function nodeType(nodeTypeKey:string):string {

@@ -6,11 +6,10 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "diagnostics": true,
     "removeComments": true,
-    "noImplicitAny": false,
     "sourceMap": true,
     "mapRoot": "map/",
-    "diagnostics": true,
     "outDir": "app/"
   },
   "exclude": [
