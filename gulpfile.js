@@ -103,10 +103,9 @@ gulp.task('BUILD-CLEAN-DISTRIBUTION', function () {
     runSequence('CLEAN', 'compile-typescript', ['copy-images', 'compile-css', 'copy-html', 'copy-javascript'], 'build-distribution');
 });
 
-gulp.task('WATCH', function () {
+gulp.task('WATCH', ['CLEAN'], function () {
     gulp.watch(['./src/**/*'], ['BUILD-TESTS']);
 });
 
-gulp.task('default', function () {
-    gulp.watch(['./src/**/*'], ['BUILD-TESTS']);
+gulp.task('default', ['WATCH'], function () {
 });
