@@ -89,15 +89,17 @@ gulp.task('build-distribution', function () {
         .pipe(gulp.dest('distro'));
 });
 
-gulp.task('BUILD-APPLICATION', function () {
+// Do not automatically perform a CLEAN when building the tests because Karma tends to gets stuck after files that it is monitoring are deleted
+
+gulp.task('BUILD-TESTS', function () {
+    runSequence('compile-typescript', ['copy-images', 'compile-css', 'copy-html', 'copy-javascript'], 'compile-test-typescript', 'copy-test-javascript');
+});
+
+gulp.task('BUILD-CLEAN-APPLICATION', function () {
     runSequence('CLEAN', 'compile-typescript', ['copy-images', 'compile-css', 'copy-html', 'copy-javascript']);
 });
 
-gulp.task('BUILD-TESTS', function () {
-    runSequence('CLEAN', 'compile-typescript', ['copy-images', 'compile-css', 'copy-html', 'copy-javascript'], 'compile-test-typescript', 'copy-test-javascript');
-});
-
-gulp.task('BUILD-DISTRIBUTION', function () {
+gulp.task('BUILD-CLEAN-DISTRIBUTION', function () {
     runSequence('CLEAN', 'compile-typescript', ['copy-images', 'compile-css', 'copy-html', 'copy-javascript'], 'build-distribution');
 });
 
