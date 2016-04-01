@@ -64,9 +64,9 @@ gulp.task('compile-typescript', function () {
 
     return gulp.src(['!./src/**/spec*.ts', './src/**/*.ts'])
         .pipe(typescriptProject)
-        .pipe(gulp.dest('./app/'))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('../map/'))
+        .pipe(gulp.dest('./app/'))
         .pipe(typescriptCompiler);
 });
 
@@ -78,9 +78,9 @@ gulp.task('compile-test-typescript', function () {
 
     return gulp.src('./src/**/spec*.ts')
         .pipe(typescriptProject)
-        .pipe(gulp.dest('./app/'))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('../map/'))
+        .pipe(gulp.dest('./app/'))
         .pipe(typescriptCompiler);
 });
 

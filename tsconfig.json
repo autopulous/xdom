@@ -9,8 +9,7 @@
     "diagnostics": true,
     "removeComments": true,
     "sourceMap": true,
-    "mapRoot": "map/",
-    "outDir": "app/"
+    "mapRoot": "map/"
   },
   "exclude": [
     "node_modules",
