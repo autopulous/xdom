@@ -39,11 +39,11 @@ module xdom {
         return null === nodeType || undefined === nodeType ? false : undefined !== nodeTypeKeys[nodeType];
     }
 
-    export function isNodeTypeKey(nodeTypeKey:string):boolean {
+    export function isNodeTypeKey(nodeTypeKey:any):boolean {
         return null === nodeTypeKey || undefined === nodeTypeKey ? false : undefined !== nodeTypes[nodeTypeKey];
     }
 
-    export function nodeType(nodeTypeKey:string):string {
+    export function nodeType(nodeTypeKey:any):string {
         return null === nodeTypeKey || undefined === nodeTypeKey ? undefined : nodeTypes[nodeTypeKey];
     }
 
