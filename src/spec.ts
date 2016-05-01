@@ -1,6 +1,6 @@
 // typings install jasmine --ambient
 
-///<reference path="../../typings/main/ambient/jasmine/jasmine.d.ts" />
+///<reference path="../typings/main/ambient/jasmine/jasmine.d.ts" />
 ///<reference path="xdom.ts"/>
 
 import nodeTypeKeys = xdom.nodeTypeKeys;

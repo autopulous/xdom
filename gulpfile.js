@@ -56,36 +56,42 @@ gulp.task('copy-test-javascript', function () {
         .pipe(gulp.dest('./app/'));
 });
 
-gulp.task('compile-typescript', function () {
-    var typescript = require('gulp-typescript');
-    var typescriptCompiler = typescript({typescript: require('ntypescript')});
-    var typescriptProject = typescript(typescript.createProject('tsconfig.json'));
-    var sourcemaps = require('gulp-sourcemaps');
+var map = '../map/';
+var app = './app/';
 
-    return gulp.src(['!./src/ts/**/spec*.ts', './src/ts/**/*.ts'])
-        .pipe(typescriptProject)
+gulp.task('compile-typescript', function () {
+    var sourcemaps = require('gulp-sourcemaps');
+    var typescript = require('gulp-typescript');
+    var merge = require('merge2');
+
+    var src = gulp.src(['!./src/**/spec*.ts', './src/**/*.ts']);
+    var dst = gulp.dest(app);
+
+    var jsMap = src.pipe(typescript(typescript.createProject('tsconfig.json')))
         .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write('../map/'))
-        .pipe(gulp.dest('./app/'))
-        .pipe(typescriptCompiler);
+        .pipe(sourcemaps.write(map));
+
+    var dts = src.pipe(typescript(typescript.createProject('tsconfig.json')));
+
+    return merge([
+        jsMap.pipe(dst),   // writes .js and .map files
+        dts.dts.pipe(dst)  // writes .d.ts files
+    ]);
 });
 
 gulp.task('compile-test-typescript', function () {
     var sourcemaps = require('gulp-sourcemaps');
     var typescript = require('gulp-typescript');
-    var typescriptCompiler = typescript({typescript: require('ntypescript')});
-    var typescriptProject = typescript(typescript.createProject('tsconfig.json'));
 
-    return gulp.src('./src/ts/**/spec*.ts')
-        .pipe(typescriptProject)
+    return gulp.src(['./src/**/spec*.ts'])
+        .pipe(typescript(typescript.createProject('tsconfig.json')))
         .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write('../map/'))
-        .pipe(gulp.dest('./app/'))
-        .pipe(typescriptCompiler);
+        .pipe(sourcemaps.write(map))
+        .pipe(gulp.dest(app));
 });
 
 gulp.task('build-distribution', function () {
-    return gulp.src(['./src/package.json', './README.md', './app/**/*.js', './src/ts/**/*.ts', '!./**/spec*.ts', '!./node_modules/', '!./node_modules/**', '!./typings/', '!./typings/**'])
+    return gulp.src(['./src/package.json', './README.md', './app/**/*.js', './app/**/*.d.ts', '!./app/**/*.shim.js', '!./node_modules/', '!./node_modules/**', '!./typings/', '!./typings/**'])
         .pipe(gulp.dest('distro'));
 });
 
