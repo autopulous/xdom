@@ -13,6 +13,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## API
+`namespaceSeparator`
+
+* the character used to separated the namespace qualifier of an XML node name
+
 `nodeTypes`
 
 * an enum that contains the numerical value of the XDOM node types (e.g. element nodes have a nodeType of 1, text nodes have a node type of 3)
@@ -25,32 +29,32 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 * an array of text strings that correspond to the numeric key values of the `nodeTypes` enum - intended for pretty printing of node type names (as opposed to just using the textual 'descriptive' keys)
 
-`isNodeType()`
+`XDom.isNodeType()`
 
 * validates that the number passed corresponds to a nodeType
 
-`isNodeTypeKey()`
+`XDom.isNodeTypeKey()`
 
 * validates that the passed string is either a numerical or 'descriptive' textual nodeTypes key value
 
-`nodeType()`
+`XDom.nodeType()`
 
 * safely access a nodeType by its nodeTypeKey
 
-`nodeTypeKey()`
+`XDom.nodeTypeKey()`
 
 * safely access a nodeTypeKey by index
 
-`nodeTypeName()`
+`XDom.nodeTypeName()`
 
 * safely access a nodeTypeName by index
 
 ### Usage
 
-Import one or more `xdom` module members, as follows:
+Import one or more `xdom` members, as follows:
 
 ```
-import nodeTypes = xdom.nodeTypes;
+import {XDom, nodeTypes, nodeTypeNames, nodeTypeKeys, namespaceSeparator} from './xdom';
 ```
 
 Use the module member, as follows:
