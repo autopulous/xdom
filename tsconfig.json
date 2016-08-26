@@ -1,20 +1,20 @@
 {
-  "compileOnSave": true,
-  "compilerOptions": {
-    "target": "ES5",
-    "module": "System",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "removeComments": true,
-    "noImplicitAny": true,
-    "declaration": true,
-    "sourceMap": true,
-    "mapRoot": "map/",
-    "diagnostics": true
-  },
-  "exclude": [
-    "node_modules",
-    "typings"
-  ]
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "declaration": true,
+        "sourceMap": true,
+        "diagnostics": true
+    },
+    "files": [
+        "src/index.ts.txt",
+        "src/xdom.ts.txt",
+        "src/spec.ts.txt"
+    ]
 }
