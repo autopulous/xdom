@@ -5,26 +5,31 @@ module.exports = function (config) {
         basePath: '.',
 
         files: [
-            'node_modules/systemjs/dist/system-polyfills.js',
-            'node_modules/systemjs/dist/system.src.js',
-            'app/xdom.js',
-            'app/spec.js'
+            {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: false},
+            {pattern: 'systemjs.config.js', included: true, watched: false},
+            {pattern: 'karma.shim.js', included: true, watched: false},
+            {pattern: 'debug/xdom.js', included: false, watched: true},
+            {pattern: 'debug/spec.js', included: false, watched: true}
         ],
 
         autoWatch: true,
 
         logLevel: config.LOG_DEBUG,
 
-        frameworks: ['jasmine'],
-
         browsers: ['Chrome'],
 
-        plugins: ['karma-jasmine', 'karma-chrome-launcher', 'karma-spec-reporter'],
+        frameworks: ['jasmine'],
+
+        plugins: [
+            require('karma-jasmine'),
+            require('karma-chrome-launcher'),
+            require('karma-spec-reporter')
+        ],
 
         reporters: ["spec"],
 
         specReporter: {
-            maxLogLines: 50,
+            maxLogLines: 100,
             suppressFailed: false,
             suppressPassed: false,
             suppressSkipped: false,
