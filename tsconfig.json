@@ -8,13 +8,10 @@
         "experimentalDecorators": true,
         "removeComments": true,
         "noImplicitAny": true,
-        "declaration": true,
-        "sourceMap": true,
         "diagnostics": true
     },
     "files": [
-        "src/index.ts.txt",
-        "src/xdom.ts.txt",
-        "src/spec.ts.txt"
+        "src/index.ts",
+        "src/xdom.ts"
     ]
 }

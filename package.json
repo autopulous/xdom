@@ -1,6 +1,6 @@
 {
     "name": "autopulous-xdom",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A JavaScript module that provides constants to process XMLHttpRequest.responseXML (XML DOM) objects",
     "repository": {
         "type": "git",
@@ -11,24 +11,23 @@
     "dependencies": {
     },
     "devDependencies": {
-        "concurrently": "2.2.0",
+        "concurrently": "3.1.0",
         "del": "2.2.2",
         "gulp": "3.9.1",
         "gulp-sourcemaps": "1.6.0",
-        "gulp-typescript": "2.13.6",
-        "jasmine-core": "2.4.1",
+        "gulp-typescript": "3.0.2",
+        "jasmine-core": "2.5.2",
         "jasmine-spec-reporter": "2.7.0",
-        "karma": "1.2.0",
+        "karma": "1.3.0",
         "karma-chrome-launcher": "2.0.0",
         "karma-jasmine": "1.0.2",
         "karma-spec-reporter": "0.0.26",
         "lite-server": "2.2.2",
-        "merge2": "1.0.2",
         "run-sequence": "1.2.2",
-        "systemjs": "0.19.37",
+        "systemjs": "0.19.39",
         "ts-node": "1.3.0",
-        "typescript": "1.8.10",
-        "typings": "1.3.3"
+        "typescript": "2.0.3",
+        "typings": "1.4.0"
     },
     "scripts": {
         "build release": "gulp build-release",

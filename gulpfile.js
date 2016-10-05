@@ -27,42 +27,51 @@ gulp.task('clean', function () {
 });
 
 gulp.task('compile-modules', function () {
-    var sourcemaps = require('gulp-sourcemaps');
     var typescript = require('gulp-typescript');
-    var merge = require('merge2');
 
-    var src = gulp.src(['!./src/**/spec*.ts', './src/**/*.ts']);
-    var dst = gulp.dest(release);
+    var typescriptProject = typescript.createProject(
+        './tsconfig.json',
+        {declaration: true, sourceMap: false}
+    );
 
-    var js = src.pipe(typescript(typescript.createProject('tsconfig.json')));
-    var dts = src.pipe(typescript(typescript.createProject('tsconfig.json')));
+    var typescriptResult = typescriptProject.src().pipe(typescriptProject());
 
-    return merge([
-        js.pipe(dst),     // writes .js files
-        dts.dts.pipe(dst) // writes .d.ts files
-    ]);
+    return typescriptResult
+        .pipe(gulp.dest(release + '/'));
 });
 
 gulp.task('compile-modules-with-maps', function () {
     var sourcemaps = require('gulp-sourcemaps');
     var typescript = require('gulp-typescript');
 
-    return gulp.src([src + '/**/*.ts', '!' + src + '/**/*spec.ts', './typings.d.ts'])
-               .pipe(typescript(typescript.createProject('./tsconfig.json')))
-               .pipe(sourcemaps.init())
-               .pipe(sourcemaps.write('./'))
-               .pipe(gulp.dest(debug + '/'));
+    var typescriptProject = typescript.createProject(
+        './tsconfig.json',
+        {declaration: true, sourceMap: true}
+    );
+
+    var typescriptResult = typescriptProject.src().pipe(typescriptProject());
+
+    return typescriptResult
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(debug + '/'));
 });
 
 gulp.task('compile-tests', function () {
     var sourcemaps = require('gulp-sourcemaps');
     var typescript = require('gulp-typescript');
 
-    return gulp.src([src + '/**/spec*.ts', './typings.d.ts'])
-               .pipe(typescript(typescript.createProject('./tsconfig.json')))
-               .pipe(sourcemaps.init())
-               .pipe(sourcemaps.write('./'))
-               .pipe(gulp.dest(debug + '/'));
+    var typescriptProject = typescript.createProject(
+        './tsconfig.tests.json',
+        {declaration: false, sourceMap: true}
+    );
+
+    var typescriptResult = typescriptProject.src().pipe(typescriptProject());
+
+    return typescriptResult
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(debug + '/'));
 });
 
 gulp.task('copy-static', function () {
